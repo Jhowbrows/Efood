@@ -6,21 +6,41 @@ import * as S from './styles'
 import Tag from '../Tag'
 
 type Props = {
+  id: number
   title: string
-  review: string
+  review: number
   image: string
   description: string
-  infos: string[]
+  infos: TagInfo[]
 }
 
-const HomeItem = ({ description, image, infos, review, title }: Props) => (
+export type TagInfo = {
+  text: string
+  size: 'big' | 'small'
+}
+
+export const reduceDescription = (description: string) => {
+  if (description.length > 170) {
+    return description.slice(0, 160) + '...'
+  }
+  return description
+}
+
+const RestaurantItem = ({
+  description,
+  image,
+  infos,
+  review,
+  title,
+  id
+}: Props) => (
   <S.Card>
     <S.ContainerImg>
       <img src={image} alt={title} />
       <S.ContainerTag>
         {infos.map((info) => (
-          <Tag size="big" key={info}>
-            {info}
+          <Tag size="big" key={info.text}>
+            {info.text}
           </Tag>
         ))}
       </S.ContainerTag>
@@ -33,10 +53,10 @@ const HomeItem = ({ description, image, infos, review, title }: Props) => (
           <img src={ReviewStar} alt="Estrela" />
         </S.Review>
       </S.ContainerReview>
-      <S.Descrição>{description}</S.Descrição>
+      <S.Descrição>{reduceDescription(description)}</S.Descrição>
       <Button
         type="link"
-        to="/Perfil"
+        to={`/Perfil/${id}`}
         title="Saiba Mais sobre este restaurante"
       >
         Saiba Mais
@@ -45,4 +65,4 @@ const HomeItem = ({ description, image, infos, review, title }: Props) => (
   </S.Card>
 )
 
-export default HomeItem
+export default RestaurantItem

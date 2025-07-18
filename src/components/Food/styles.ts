@@ -9,6 +9,9 @@ export const FoodContainer = styled.div`
   height: 338px;
   padding: 8px;
   margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   p {
     font-size: 14px;
@@ -44,6 +47,6 @@ export const FoodButton = styled.button`
   line-height: 100%;
   letter-spacing: 0;
   margin: 8px 0;
-
   border: none;
+  cursor: pointer;
 `

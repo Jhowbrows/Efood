@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Cores } from '../../styles'
 
 export const ListContainer = styled.section`
   margin-top: 80px;

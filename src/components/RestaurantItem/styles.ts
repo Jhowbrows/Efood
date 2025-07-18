@@ -15,7 +15,7 @@ export const Card = styled.div`
 
 export const ContainerImg = styled.div`
   width: 100%;
-  height: 100%;
+  max-height: 217px;
 
   img {
     width: 100%;
