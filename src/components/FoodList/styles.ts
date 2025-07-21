@@ -93,4 +93,8 @@ export const Description = styled.p`
 
 export const ModalButon = styled.button`
   padding: 4px 7px;
+  color: ${Cores.RosaEscuro};
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
 `

@@ -1,3 +1,4 @@
+import { reduceDescription } from '../../utils/formatters'
 import * as S from './styles'
 
 type Props = {
@@ -8,10 +9,6 @@ type Props = {
 }
 
 const Food = ({ description, img, title, imgAlt }: Props) => {
-  const reduceDescription = (descricao: string) => {
-    return descricao.length > 150 ? descricao.slice(0, 150) + '...' : descricao
-  }
-
   return (
     <>
       <S.FoodContainer>

@@ -4,13 +4,7 @@ import * as S from './styles'
 
 import Close from '../../assets/images/close.png'
 import { Restaurant } from '../../pages/Home'
-
-export const priceFormat = (price: number) => {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(price)
-}
+import { priceFormat } from '../../utils/formatters'
 
 export type Props = {
   restaurant: Restaurant
@@ -26,8 +20,8 @@ export const FoodList = ({ restaurant }: Props) => {
   const [description, setDescription] = useState('')
   const [img, setImg] = useState('')
   const [imgAlt, setImgAlt] = useState('')
-  const [foodServe, setfoodServe] = useState('')
-  const [foodPrice, setfoodPrice] = useState(0)
+  const [foodServe, setFoodServe] = useState('')
+  const [foodPrice, setFoodPrice] = useState(0)
 
   const closeModal = () => {
     setModal({ isVisible: false })
@@ -44,10 +38,10 @@ export const FoodList = ({ restaurant }: Props) => {
                 setModal({ isVisible: true })
                 setTitle(cardapios.nome)
                 setDescription(cardapios.descricao)
-                setfoodServe(cardapios.porcao)
+                setFoodServe(cardapios.porcao)
                 setImg(cardapios.foto)
                 setImgAlt(cardapios.nome)
-                setfoodPrice(cardapios.preco)
+                setFoodPrice(cardapios.preco)
               }}
             >
               <Food
@@ -62,33 +56,35 @@ export const FoodList = ({ restaurant }: Props) => {
         </S.List>
       </S.FoodListContainer>
 
-      <S.Modal className={modal.isVisible ? 'visible' : ''}>
-        <S.ModalContent>
-          <S.ModalImg src={img} alt={imgAlt} />
-          <S.ModalContainer>
-            <S.Title>{title}</S.Title>
-            <S.Description>
-              {description}
-              <p>{foodServe}</p>
-            </S.Description>
-            <S.ModalButon>
-              Adicionar ao Carrinho - {priceFormat(foodPrice)}
-            </S.ModalButon>
-          </S.ModalContainer>
-          <S.CloseIcon
-            src={Close}
+      {modal.isVisible && (
+        <S.Modal className={modal.isVisible ? 'visible' : ''}>
+          <S.ModalContent>
+            <S.ModalImg src={img} alt={imgAlt} />
+            <S.ModalContainer>
+              <S.Title>{title}</S.Title>
+              <S.Description>
+                {description}
+                <p>Serve: de {foodServe}</p>
+              </S.Description>
+              <S.ModalButon>
+                Adicionar ao Carrinho - {priceFormat(foodPrice)}
+              </S.ModalButon>
+            </S.ModalContainer>
+            <S.CloseIcon
+              src={Close}
+              onClick={() => {
+                closeModal()
+              }}
+            />
+          </S.ModalContent>
+          <div
             onClick={() => {
               closeModal()
             }}
-          />
-        </S.ModalContent>
-        <div
-          onClick={() => {
-            closeModal()
-          }}
-          className="overlay"
-        ></div>
-      </S.Modal>
+            className="overlay"
+          ></div>
+        </S.Modal>
+      )}
     </>
   )
 }

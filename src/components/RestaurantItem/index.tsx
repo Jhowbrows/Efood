@@ -4,6 +4,7 @@ import ReviewStar from '../../assets/images/ReviewStar.png'
 
 import * as S from './styles'
 import Tag from '../Tag'
+import { reduceDescription } from '../../utils/formatters'
 
 type Props = {
   id: number
@@ -17,13 +18,6 @@ type Props = {
 export type TagInfo = {
   text: string
   size: 'big' | 'small'
-}
-
-export const reduceDescription = (description: string) => {
-  if (description.length > 170) {
-    return description.slice(0, 160) + '...'
-  }
-  return description
 }
 
 const RestaurantItem = ({
