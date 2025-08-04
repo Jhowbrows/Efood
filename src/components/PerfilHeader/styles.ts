@@ -6,11 +6,15 @@ import { Link } from 'react-router-dom'
 export const HeaderContainer = styled.div`
   width: 100%;
   height: 186px;
-  display: block;
+  display: flex;
   background-size: cover;
   background-repeat: no-repeat;
   font-weight: bold;
   padding: 64px 0;
+
+  .container {
+    justify-content: space-between;
+  }
 `
 
 export const LogoContainer = styled.div`
@@ -44,6 +48,10 @@ export const BannerContainer = styled.div`
   justify-content: space-between;
   height: 100%;
   padding: 24px 0 32px 0;
+
+  .container {
+    justify-content: space-between;
+  }
 `
 
 export const BannerText = styled.span`

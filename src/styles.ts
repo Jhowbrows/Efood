@@ -16,9 +16,22 @@ export const GlobalCss = createGlobalStyle`
     text-decoration: none;
   }
 
+
+
   .container {
     max-width: 1024px;
     width: 100%;
     margin: 0 auto;
+
+
+    @media (max-width: 768px) {
+      max-width: 80%;
+      display: flex;
+
+    }
+
+    @media (max-width: 425px) {
+      max-width: 100%;
+    }
   }
 `

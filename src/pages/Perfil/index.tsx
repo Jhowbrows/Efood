@@ -6,31 +6,35 @@ import PerfilHeader from '../../components/PerfilHeader'
 import { FoodList } from '../../components/FoodList'
 import Footer from '../../components/Footer'
 
-import type { Restaurant } from '../Home'
+import { useGetRestaurantSelectedQuery } from '../../services/api'
+import Cart from '../../components/Cart'
 
 const Perfil = () => {
   const { id } = useParams()
-  const [restaurant, setRestaurant] = useState<Restaurant>()
 
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((res) => setRestaurant(res))
-  }, [id])
+  const { data: restaurantFood } = useGetRestaurantSelectedQuery(id!)
 
-  if (!restaurant) {
-    return <h3>Carregando...</h3>
+  if (restaurantFood) {
+    return (
+      <>
+        <PerfilHeader restaurant={restaurantFood} />
+        <div className="container">
+          <FoodList
+            restaurant={restaurantFood}
+            pedido={{
+              id: 0,
+              nome: '',
+              foto: '',
+              preco: 0
+            }}
+          />
+        </div>
+        <Cart />
+        <Footer />
+      </>
+    )
   }
-
-  return (
-    <>
-      <PerfilHeader restaurant={restaurant} />
-      <div className="container">
-        <FoodList restaurant={restaurant} />
-      </div>
-      <Footer />
-    </>
-  )
+  return <h3>Carregando...</h3>
 }
 
 export default Perfil

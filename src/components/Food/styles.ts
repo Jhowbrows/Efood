@@ -17,6 +17,10 @@ export const FoodContainer = styled.div`
     font-size: 14px;
     line-height: 22px;
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 export const ImgContainer = styled.div`

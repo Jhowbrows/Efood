@@ -3,7 +3,6 @@ import { Cores } from '../../styles'
 
 export const FoodListContainer = styled.div`
   max-width: 1024px;
-  width: 100%;
 `
 
 export const List = styled.ul`
@@ -13,6 +12,11 @@ export const List = styled.ul`
   padding-top: 56px;
   color: ${Cores.Bege};
   padding-bottom: 120px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
 `
 
 export const Modal = styled.div`
@@ -47,6 +51,10 @@ export const ModalContent = styled.div`
   flex-direction: row;
   position: relative;
   z-index: 1;
+
+  @media (max-width: 768px) {
+    max-width: 680px;
+  }
 `
 
 export const ModalContainer = styled.div`
@@ -69,6 +77,13 @@ export const CloseIcon = styled.img`
   width: 100%;
   margin: 8px;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    img {
+      width: 20px;
+      padding-bottom: 8px;
+    }
+  }
 `
 
 export const Title = styled.h3`
@@ -88,6 +103,10 @@ export const Description = styled.p`
   margin: 16px 0 16px 0;
   p {
     margin-top: 16px;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
   }
 `
 

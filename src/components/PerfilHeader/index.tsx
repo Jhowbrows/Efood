@@ -7,12 +7,21 @@ import fundoImg from '../../assets/images/fundoHeader.png'
 
 import { Restaurant } from '../../pages/Home'
 
+import { open } from '../../store/reducers/Cart'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootReducer } from '../../store'
+
 export type Props = {
   restaurant: Restaurant
 }
 
 const PerfilHeader = ({ restaurant }: Props) => {
-  const { id } = useParams()
+  const dispatch = useDispatch()
+  const { pedido } = useSelector((state: RootReducer) => state.cart)
+
+  const openCart = () => {
+    dispatch(open())
+  }
 
   return (
     <>
@@ -23,7 +32,9 @@ const PerfilHeader = ({ restaurant }: Props) => {
             <Link to="/">
               <img src={logo} alt="Efood" />
             </Link>
-            <S.Cart>0 Produto(s) no carrinho</S.Cart>
+            <S.Cart onClick={openCart}>
+              {pedido.length} Produto(s) no carrinho
+            </S.Cart>
           </S.LogoContainer>
         </S.HeaderContainer>
         <S.Banner style={{ backgroundImage: `url(${restaurant?.capa})` }}>

@@ -3,28 +3,47 @@ import Food from '../Food'
 import * as S from './styles'
 
 import Close from '../../assets/images/close.png'
-import { Restaurant } from '../../pages/Home'
+import { Pedido, Restaurant } from '../../pages/Home'
 import { priceFormat } from '../../utils/formatters'
+import { useDispatch } from 'react-redux'
+
+import { add, open } from '../../store/reducers/Cart'
 
 export type Props = {
   restaurant: Restaurant
+  pedido: Pedido
 }
 
 type modalState = {
   isVisible: boolean
 }
 
-export const FoodList = ({ restaurant }: Props) => {
+export const FoodList = ({ restaurant, pedido }: Props) => {
   const [modal, setModal] = useState<modalState>({ isVisible: false })
-  const [title, setTitle] = useState('')
+  const [foodTitle, setFoodTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [img, setImg] = useState('')
+  const [foodImg, setFoodImg] = useState('')
   const [imgAlt, setImgAlt] = useState('')
   const [foodServe, setFoodServe] = useState('')
   const [foodPrice, setFoodPrice] = useState(0)
+  const [foodId, setFoodId] = useState(0)
 
   const closeModal = () => {
     setModal({ isVisible: false })
+  }
+
+  const dispatch = useDispatch()
+
+  const addToCart = () => {
+    const newAdd = {
+      ...pedido,
+      id: foodId,
+      nome: foodTitle,
+      foto: foodImg,
+      preco: foodPrice
+    }
+    dispatch(add(newAdd))
+    dispatch(open())
   }
 
   return (
@@ -36,12 +55,13 @@ export const FoodList = ({ restaurant }: Props) => {
               key={cardapios.id}
               onClick={() => {
                 setModal({ isVisible: true })
-                setTitle(cardapios.nome)
+                setFoodTitle(cardapios.nome)
                 setDescription(cardapios.descricao)
                 setFoodServe(cardapios.porcao)
-                setImg(cardapios.foto)
+                setFoodImg(cardapios.foto)
                 setImgAlt(cardapios.nome)
                 setFoodPrice(cardapios.preco)
+                setFoodId(cardapios.id)
               }}
             >
               <Food
@@ -59,14 +79,14 @@ export const FoodList = ({ restaurant }: Props) => {
       {modal.isVisible && (
         <S.Modal className={modal.isVisible ? 'visible' : ''}>
           <S.ModalContent>
-            <S.ModalImg src={img} alt={imgAlt} />
+            <S.ModalImg src={foodImg} alt={imgAlt} />
             <S.ModalContainer>
-              <S.Title>{title}</S.Title>
+              <S.Title>{foodTitle}</S.Title>
               <S.Description>
                 {description}
                 <p>Serve: de {foodServe}</p>
               </S.Description>
-              <S.ModalButon>
+              <S.ModalButon onClick={addToCart}>
                 Adicionar ao Carrinho - {priceFormat(foodPrice)}
               </S.ModalButon>
             </S.ModalContainer>

@@ -20,4 +20,8 @@ export const TituloHeader = styled.h2`
   font-size: 36px;
   font-weight: bold;
   margin-top: 138px;
+
+  @media (max-width: 768px) {
+    margin-top: 120px;
+  }
 `
