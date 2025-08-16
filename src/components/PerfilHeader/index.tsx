@@ -1,11 +1,9 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import * as S from './styles'
 
 import logo from '../../assets/images/logo.png'
 import fundoImg from '../../assets/images/fundoHeader.png'
-
-import { Restaurant } from '../../pages/Home'
 
 import { open } from '../../store/reducers/Cart'
 import { useDispatch, useSelector } from 'react-redux'

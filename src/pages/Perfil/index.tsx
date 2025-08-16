@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import PerfilHeader from '../../components/PerfilHeader'
@@ -8,11 +7,18 @@ import Footer from '../../components/Footer'
 
 import { useGetRestaurantSelectedQuery } from '../../services/api'
 import Cart from '../../components/Cart'
+import Loader from '../../components/Loader'
 
 const Perfil = () => {
   const { id } = useParams()
 
-  const { data: restaurantFood } = useGetRestaurantSelectedQuery(id!)
+  const { data: restaurantFood, isLoading } = useGetRestaurantSelectedQuery(
+    id || ''
+  )
+
+  if (isLoading) {
+    return <Loader />
+  }
 
   if (restaurantFood) {
     return (

@@ -1,8 +1,14 @@
 import { createGlobalStyle } from 'styled-components'
 
+export const breakPoints = {
+  desktop: '1024px',
+  tablet: '768px'
+}
+
 export const Cores = {
   RosaEscuro: '#E66767',
   Bege: '#FFEBD9',
+  BegeClaro: '#FFF8F2',
   branco: '#FFFFFF'
 }
 

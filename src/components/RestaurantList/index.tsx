@@ -1,10 +1,6 @@
-import { useState } from 'react'
-
 import * as S from './styles'
 
 import RestaurantItem from '../RestaurantItem'
-
-import { Restaurant } from '../../pages/Home'
 
 type Props = {
   restaurants: Restaurant[]

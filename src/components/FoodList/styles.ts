@@ -1,21 +1,34 @@
 import styled from 'styled-components'
-import { Cores } from '../../styles'
+import { breakPoints, Cores } from '../../styles'
 
 export const FoodListContainer = styled.div`
   max-width: 1024px;
+
+  .agrupador {
+    max-width: 100%;
+    margin: 0 auto;
+  }
 `
 
 export const List = styled.ul`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 32px;
-  padding-top: 56px;
+  padding: 56px 24px 120px 24px;
   color: ${Cores.Bege};
-  padding-bottom: 120px;
 
-  @media (max-width: 768px) {
+  li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (max-width: ${breakPoints.desktop}) {
     grid-template-columns: repeat(2, 1fr);
     width: 100%;
+  }
+  @media (max-width: ${breakPoints.tablet}) {
+    grid-template-columns: 1fr;
   }
 `
 
@@ -53,7 +66,8 @@ export const ModalContent = styled.div`
   z-index: 1;
 
   @media (max-width: 768px) {
-    max-width: 680px;
+    flex-direction: column;
+    max-width: 80%;
   }
 `
 
@@ -61,6 +75,11 @@ export const ModalContainer = styled.div`
   max-width: 656px;
   width: 100%;
   margin-top: 32px;
+
+  @media (max-width: ${breakPoints.tablet}) {
+    padding: 10px 15px;
+    margin-top: 8px;
+  }
 `
 
 export const ModalImg = styled.img`
@@ -69,6 +88,17 @@ export const ModalImg = styled.img`
   height: 280px;
   margin: 32px 24px 32px 32px;
   object-fit: cover;
+
+  @media (max-width: 768px) {
+    margin: 0 auto;
+    margin-top: 10px;
+
+    img {
+      width: 100%;
+    }
+    width: 160px;
+    height: 160px;
+  }
 `
 
 export const CloseIcon = styled.img`
@@ -103,10 +133,6 @@ export const Description = styled.p`
   margin: 16px 0 16px 0;
   p {
     margin-top: 16px;
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
   }
 `
 

@@ -13,6 +13,7 @@ export const Card = styled.div`
   justify-content: space-between;
 
   @media (max-width: 768px) {
+    width: 100%;
   }
 `
 

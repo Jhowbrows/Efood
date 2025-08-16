@@ -11,3 +11,9 @@ export const priceFormat = (price: number) => {
     currency: 'BRL'
   }).format(price)
 }
+
+export const getTotalPrice = (items: Pedido[]) => {
+  return items.reduce((acumulator, actualValue) => {
+    return (acumulator += actualValue.preco)
+  }, 0)
+}

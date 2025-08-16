@@ -3,7 +3,6 @@ import Food from '../Food'
 import * as S from './styles'
 
 import Close from '../../assets/images/close.png'
-import { Pedido, Restaurant } from '../../pages/Home'
 import { priceFormat } from '../../utils/formatters'
 import { useDispatch } from 'react-redux'
 
@@ -44,11 +43,12 @@ export const FoodList = ({ restaurant, pedido }: Props) => {
     }
     dispatch(add(newAdd))
     dispatch(open())
+    setModal({ isVisible: false })
   }
 
   return (
     <>
-      <S.FoodListContainer>
+      <S.FoodListContainer className="agrupador">
         <S.List>
           {restaurant.cardapio.map((cardapios) => (
             <li
