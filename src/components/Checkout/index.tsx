@@ -205,7 +205,7 @@ const Order = () => {
                     value={formikPagamento.values.cardNumber}
                     onChange={formikPagamento.handleChange}
                     onBlur={formikPagamento.handleBlur}
-                    mask="9999 9999 9999 9999"
+                    mask="9999999999999999"
                   />
                   {formikPagamento.touched.cardNumber &&
                     formikPagamento.errors.cardNumber && (
